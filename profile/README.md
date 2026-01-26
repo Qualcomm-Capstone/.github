@@ -10,13 +10,6 @@
 </div>
 <br />
 
-
-
-<h2>📖 Medium</h2>
-https://medium.com/~~~
-<br />
-<br />
-
 <h2>🖥️ Demo</h2>
 <h3>시연 영상</h3>
 https://www.youtube.com/watch?v=FDzbjOeika8
@@ -36,7 +29,50 @@ https://www.youtube.com/watch?v=FDzbjOeika8
 
 
 <h2>🏛️ System Architechture</h2>
-<img src="https://github.com/user-attachments/assets/a08a74d6-340e-4ded-8cc3-6c6928831fda">
+<img width="1616" height="646" alt="image" src="https://github.com/user-attachments/assets/1215a1dc-a232-4837-b8c2-53ae3c9f7150" />
+
+[자세히 보기](https://www.notion.so/2f33187fa1c980e1895cfef39b2c8ec7?pvs=21)
+
+### 기존 시스템 아키텍처의 문제점
+
+기존 아키텍처는 다음과 위와 같은 구조(Before)를 가지고 있었습니다
+
+이 구조에서 다음과 같은 **4가지 핵심 문제**가 발생했습니다.
+
+- OCR 동기 처리로 인한 서버 처리량 저하
+- 느린 응답으로 인한 Edge Device 블로킹
+- HTTP 기반 IoT 통신의 구조적 한계
+- OCR 장애가 전체 서비스에 전파
+
+### 새로운 아키텍처의 설계
+
+위 문제들을 해결하기 위해 **Event Driven Architecture**로 전환했습니다.
+
+- 비동기 이벤트 처리로 서버 처리량 극대화
+- 즉시 응답으로 Edge Device 해방
+- MQTT 프로토콜로 IoT 최적화
+- 완전한 장애 격리와 독립적 확장
+
+### 정리
+
+**Before vs After 비교**
+
+| 문제 영역 | Before | After |
+| --- | --- | --- |
+| **OCR 처리** | Django 동기 (블로킹) | OCR-Worker 비동기 |
+| **응답 시간** | 3초+ | < 100ms |
+| **IoT 프로토콜** | HTTP (오버헤드) | MQTT (경량, QoS) |
+| **메시지 보장** | 없음 | At least once |
+| **장애 격리** | 전체 영향 | 컴포넌트 격리 |
+| **확장성** | 서버 전체 확장 | Worker별 독립 확장 |
+| **데이터베이스** | 단일 DB | 서비스별 4개 DB |
+
+**기존 아키텍처의 근본적 한계**였던 **OCR 동기 처리**를 제거하고, **Event Driven Architecture**로 전환함으로써
+
+1. **서버 처리량 극대화**: API 서버는 이벤트 발행만 담당, OCR은 별도 Worker가 병렬 처리
+2. **Edge Device 효율화**: 즉시 응답으로 연속 감지 가능, 데이터 유실 방지
+3. **IoT 최적화**: MQTT 프로토콜로 경량화, 메시지 전달 보장, 오프라인 대응
+4. **운영 안정성**: 장애 격리, 독립적 확장, 이벤트 보존으로 시스템 복원력 확보
 <br />
 <br />
 
@@ -62,9 +98,8 @@ https://www.youtube.com/watch?v=FDzbjOeika8
 <br />
 <br />
 <h4>Infra</h4>
-<img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white"/>
-<img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white"/>
-<img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white"/>
+<img src="https://img.shields.io/badge/Google Cloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white"/>
+<img src="https://img.shields.io/badge/Google Cloud Storage-AECBFA?style=for-the-badge&logo=googlecloudstorage&logoColor=white"/>
 <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white">
 <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white">
 <img src="https://img.shields.io/badge/Traefik-24A1C1?style=for-the-badge&logo=traefikproxy&logoColor=white">
