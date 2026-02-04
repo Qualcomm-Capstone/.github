@@ -2,7 +2,8 @@
 
 <div align=center>
 <img src="https://github.com/user-attachments/assets/cadc57b1-1806-4580-954d-ef898bd68f5f"/>
-<h5>2025.03.20-2024.05.30</h5>
+<h5>v1 : 2025.03.20-2025.05.30</h5>
+<h5>v2 : 2026.12.29-2025.01.30</h5>
 <h4>https://autonotify.store</h4>
 <h2>실시간 과속탐지 및 알림 시스템</h2>
 <h3>Rubik Pi 보드에서 YOLO 기반 객체 감지와 속도 측정을 통해 과속 차량을 탐지하고,<br>
