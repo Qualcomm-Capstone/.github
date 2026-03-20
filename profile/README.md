@@ -141,24 +141,20 @@ Django REST Framework 기반 API. Vehicle CRUD, Detection 조회/통계, Notific
 OpenTelemetry + Jaeger 분산 트레이싱, Prometheus + Grafana 메트릭 대시보드, Loki + Promtail 로그 수집, Flower Celery 모니터링, RabbitMQ Management 큐 대시보드로 구성된 풀스택 관측성.
 
 <h3>Grafana Dashboard</h3>
-
-<!-- TODO: 새 스크린샷으로 교체 — Grafana 시스템 메트릭 대시보드 -->
-<img src="" alt="Grafana Dashboard" width="70%">
+<img src="../assets/monitoring/grafana-dashboard.png" alt="Grafana Dashboard" width="70%">
 
 <h3>Jaeger Tracing</h3>
 
-<!-- TODO: 새 스크린샷으로 교체 — Jaeger E2E 트레이싱 (MQTT → OCR → FCM) -->
-<img src="" alt="Jaeger Tracing" width="70%">
+<!-- TODO: 수동 캡처 필요 — http://localhost:16686 에서 트레이스 검색 후 캡처 -->
+<img src="../assets/monitoring/jaeger-tracing.png" alt="Jaeger Tracing" width="70%">
 
 <h3>RabbitMQ Management</h3>
-
-<!-- TODO: 새 스크린샷으로 교체 — RabbitMQ Queue 상태 (ocr_queue, fcm_queue, alert_domain_events) -->
-<img src="" alt="RabbitMQ Management" width="70%">
+<img src="../assets/monitoring/rabbitmq-grafana.png" alt="RabbitMQ Queue Monitoring (Grafana)" width="70%">
 
 <h3>Loki + Promtail Logs</h3>
 
-<!-- TODO: 새 스크린샷으로 교체 — Grafana Loki 로그 조회 -->
-<img src="" alt="Loki Logs" width="70%">
+<!-- TODO: 수동 캡처 필요 — Promtail 로그 수집 후 Grafana Explore에서 캡처 -->
+<img src="../assets/monitoring/loki-logs.png" alt="Loki Logs" width="70%">
 
 <br />
 
