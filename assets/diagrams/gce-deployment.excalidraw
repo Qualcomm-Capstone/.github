@@ -1,0 +1,819 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "mcp-excalidraw-server",
+  "elements": [
+    {
+      "id": "mmz7hpvyysri3333nsd",
+      "type": "text",
+      "x": 80,
+      "y": 20,
+      "strokeColor": "#1e1e1e",
+      "text": "SpeedCam — GCE Deployment Architecture",
+      "fontSize": 28,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.693Z",
+      "updatedAt": "2026-03-20T18:02:01.693Z",
+      "version": 1
+    },
+    {
+      "id": "gcp-boundary",
+      "type": "rectangle",
+      "x": 60,
+      "y": 80,
+      "width": 1300,
+      "height": 520,
+      "backgroundColor": "#ffffff",
+      "strokeColor": "#f08c00",
+      "strokeWidth": 4,
+      "roughness": 1,
+      "opacity": 30,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzw949o315bq",
+      "type": "text",
+      "x": 80,
+      "y": 90,
+      "strokeColor": "#f08c00",
+      "text": "GCP (asia-northeast3-a)",
+      "fontSize": 16,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "app",
+      "type": "rectangle",
+      "x": 100,
+      "y": 160,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "transparent",
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvznz94zj28oi",
+      "type": "text",
+      "x": 130,
+      "y": 185,
+      "strokeColor": "#1e1e1e",
+      "text": "speedcam-app",
+      "fontSize": 18,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzso8i5he0kxm",
+      "type": "text",
+      "x": 110,
+      "y": 215,
+      "strokeColor": "#868e96",
+      "text": "Django + Gunicorn\nMQTT Subscriber",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "db",
+      "type": "rectangle",
+      "x": 100,
+      "y": 340,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "transparent",
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzj32v3qumyr",
+      "type": "text",
+      "x": 140,
+      "y": 365,
+      "strokeColor": "#1e1e1e",
+      "text": "speedcam-db",
+      "fontSize": 18,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzk94vdbg0cze",
+      "type": "text",
+      "x": 130,
+      "y": 395,
+      "strokeColor": "#868e96",
+      "text": "MySQL 8.0 (4 DBs)",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mq",
+      "type": "rectangle",
+      "x": 440,
+      "y": 160,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "transparent",
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvz9wyhu7vshc",
+      "type": "text",
+      "x": 470,
+      "y": 185,
+      "strokeColor": "#1e1e1e",
+      "text": "speedcam-mq",
+      "fontSize": 18,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzzbljrmlgw6m",
+      "type": "text",
+      "x": 460,
+      "y": 215,
+      "strokeColor": "#868e96",
+      "text": "RabbitMQ\nMQTT + AMQP",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "ocr",
+      "type": "rectangle",
+      "x": 780,
+      "y": 160,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "transparent",
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvz8phkxnu1t3a",
+      "type": "text",
+      "x": 810,
+      "y": 185,
+      "strokeColor": "#1e1e1e",
+      "text": "speedcam-ocr",
+      "fontSize": 18,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzufkm94tnu8",
+      "type": "text",
+      "x": 800,
+      "y": 215,
+      "strokeColor": "#868e96",
+      "text": "Celery prefork\nEasyOCR ×3",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "alert",
+      "type": "rectangle",
+      "x": 780,
+      "y": 340,
+      "width": 200,
+      "height": 120,
+      "backgroundColor": "transparent",
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "createdAt": "2026-03-20T18:02:01.694Z",
+      "updatedAt": "2026-03-20T18:02:01.694Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzq9e9l4qr4jr",
+      "type": "text",
+      "x": 800,
+      "y": 365,
+      "strokeColor": "#1e1e1e",
+      "text": "speedcam-alert",
+      "fontSize": 18,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.695Z",
+      "updatedAt": "2026-03-20T18:02:01.695Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzmpc4vlhk9bp",
+      "type": "text",
+      "x": 790,
+      "y": 395,
+      "strokeColor": "#868e96",
+      "text": "Kombu Consumer\nCelery gevent",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.695Z",
+      "updatedAt": "2026-03-20T18:02:01.695Z",
+      "version": 1
+    },
+    {
+      "id": "mon",
+      "type": "rectangle",
+      "x": 1100,
+      "y": 240,
+      "width": 220,
+      "height": 140,
+      "backgroundColor": "transparent",
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "createdAt": "2026-03-20T18:02:01.695Z",
+      "updatedAt": "2026-03-20T18:02:01.695Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzbxqu8e55w2l",
+      "type": "text",
+      "x": 1130,
+      "y": 260,
+      "strokeColor": "#1e1e1e",
+      "text": "speedcam-mon",
+      "fontSize": 18,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.696Z",
+      "updatedAt": "2026-03-20T18:02:01.696Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzsulkle73lgm",
+      "type": "text",
+      "x": 1110,
+      "y": 295,
+      "strokeColor": "#868e96",
+      "text": "Prometheus + Grafana\nLoki + Jaeger\nOTel Collector",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.696Z",
+      "updatedAt": "2026-03-20T18:02:01.696Z",
+      "version": 1
+    },
+    {
+      "id": "rubik",
+      "type": "rectangle",
+      "x": 100,
+      "y": -80,
+      "width": 160,
+      "height": 60,
+      "backgroundColor": "transparent",
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "createdAt": "2026-03-20T18:02:01.696Z",
+      "updatedAt": "2026-03-20T18:02:01.696Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvz6guqicp3hdl",
+      "type": "text",
+      "x": 128,
+      "y": -65,
+      "strokeColor": "#1e1e1e",
+      "text": "Rubik Pi 3",
+      "fontSize": 18,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.696Z",
+      "updatedAt": "2026-03-20T18:02:01.696Z",
+      "version": 1
+    },
+    {
+      "id": "frontend",
+      "type": "rectangle",
+      "x": 440,
+      "y": -80,
+      "width": 160,
+      "height": 60,
+      "backgroundColor": "transparent",
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "createdAt": "2026-03-20T18:02:01.696Z",
+      "updatedAt": "2026-03-20T18:02:01.696Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvz4pf676hvbfg",
+      "type": "text",
+      "x": 455,
+      "y": -65,
+      "strokeColor": "#1e1e1e",
+      "text": "React Frontend",
+      "fontSize": 18,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.696Z",
+      "updatedAt": "2026-03-20T18:02:01.696Z",
+      "version": 1
+    },
+    {
+      "id": "fcm",
+      "type": "rectangle",
+      "x": 1100,
+      "y": 500,
+      "width": 160,
+      "height": 60,
+      "backgroundColor": "transparent",
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "createdAt": "2026-03-20T18:02:01.696Z",
+      "updatedAt": "2026-03-20T18:02:01.696Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7hpvzwcml5h9d7y",
+      "type": "text",
+      "x": 1125,
+      "y": 515,
+      "strokeColor": "#1e1e1e",
+      "text": "Firebase FCM",
+      "fontSize": 18,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:01.696Z",
+      "updatedAt": "2026-03-20T18:02:01.696Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwkbkj0xbxilk",
+      "type": "arrow",
+      "x": 182.81319570634471,
+      "y": -12.021857964346328,
+      "width": 0,
+      "height": 170,
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          12.151386365088342,
+          164.04371592869268
+        ]
+      ],
+      "start": {
+        "id": "rubik"
+      },
+      "end": {
+        "id": "app"
+      },
+      "endArrowhead": "arrow",
+      "createdAt": "2026-03-20T18:02:37.932Z",
+      "updatedAt": "2026-03-20T18:02:37.932Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwzgr5kr190ei",
+      "type": "text",
+      "x": 190,
+      "y": 50,
+      "strokeColor": "#868e96",
+      "text": "MQTT QoS 1",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:37.932Z",
+      "updatedAt": "2026-03-20T18:02:37.932Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwo1pll9b2cj",
+      "type": "arrow",
+      "x": 478.33011257638134,
+      "y": -14.841032486321737,
+      "width": 0,
+      "height": 170,
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -201.10466959720713,
+          169.6820649726435
+        ]
+      ],
+      "start": {
+        "id": "frontend"
+      },
+      "end": {
+        "id": "app"
+      },
+      "endArrowhead": "arrow",
+      "createdAt": "2026-03-20T18:02:37.932Z",
+      "updatedAt": "2026-03-20T18:02:37.932Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwbk8q1c570sc",
+      "type": "text",
+      "x": 530,
+      "y": 50,
+      "strokeColor": "#868e96",
+      "text": "REST API",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:37.932Z",
+      "updatedAt": "2026-03-20T18:02:37.932Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwe4o0nmbnhym",
+      "type": "arrow",
+      "x": 200,
+      "y": 288,
+      "width": 0,
+      "height": 50,
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          44
+        ]
+      ],
+      "start": {
+        "id": "app"
+      },
+      "end": {
+        "id": "db"
+      },
+      "endArrowhead": "arrow",
+      "createdAt": "2026-03-20T18:02:37.932Z",
+      "updatedAt": "2026-03-20T18:02:37.932Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuw29nulji62pl",
+      "type": "text",
+      "x": 210,
+      "y": 295,
+      "strokeColor": "#868e96",
+      "text": "MySQL",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:37.932Z",
+      "updatedAt": "2026-03-20T18:02:37.932Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuw3c6fqvwfhrv",
+      "type": "arrow",
+      "x": 308,
+      "y": 220,
+      "width": 130,
+      "height": 0,
+      "strokeColor": "#6741d9",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          124,
+          0
+        ]
+      ],
+      "start": {
+        "id": "app"
+      },
+      "end": {
+        "id": "mq"
+      },
+      "endArrowhead": "arrow",
+      "createdAt": "2026-03-20T18:02:37.932Z",
+      "updatedAt": "2026-03-20T18:02:37.932Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwbjy3o2wb4tp",
+      "type": "text",
+      "x": 330,
+      "y": 200,
+      "strokeColor": "#6741d9",
+      "text": "AMQP publish",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:37.932Z",
+      "updatedAt": "2026-03-20T18:02:37.932Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuw4sqfkkkn4ja",
+      "type": "arrow",
+      "x": 648,
+      "y": 220,
+      "width": 130,
+      "height": 0,
+      "strokeColor": "#6741d9",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          124,
+          0
+        ]
+      ],
+      "start": {
+        "id": "mq"
+      },
+      "end": {
+        "id": "ocr"
+      },
+      "endArrowhead": "arrow",
+      "createdAt": "2026-03-20T18:02:37.932Z",
+      "updatedAt": "2026-03-20T18:02:37.932Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwiqjle3znck",
+      "type": "text",
+      "x": 665,
+      "y": 180,
+      "strokeColor": "#6741d9",
+      "text": "ocr_queue",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:37.932Z",
+      "updatedAt": "2026-03-20T18:02:37.932Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuw13xypmuee3v",
+      "type": "arrow",
+      "x": 772,
+      "y": 220,
+      "width": -240,
+      "height": 0,
+      "strokeColor": "#6741d9",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -124,
+          0
+        ]
+      ],
+      "start": {
+        "id": "ocr"
+      },
+      "end": {
+        "id": "mq"
+      },
+      "endArrowhead": "arrow",
+      "createdAt": "2026-03-20T18:02:37.933Z",
+      "updatedAt": "2026-03-20T18:02:37.933Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwdjn9dsm7qub",
+      "type": "text",
+      "x": 660,
+      "y": 285,
+      "strokeColor": "#6741d9",
+      "text": "domain_events",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:37.933Z",
+      "updatedAt": "2026-03-20T18:02:37.933Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwfn25naxr2l5",
+      "type": "arrow",
+      "x": 647.0703033307765,
+      "y": 276.6842782339405,
+      "width": 130,
+      "height": 130,
+      "strokeColor": "#6741d9",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          125.85939333844703,
+          66.63144353211896
+        ]
+      ],
+      "start": {
+        "id": "mq"
+      },
+      "end": {
+        "id": "alert"
+      },
+      "endArrowhead": "arrow",
+      "createdAt": "2026-03-20T18:02:37.933Z",
+      "updatedAt": "2026-03-20T18:02:37.933Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwzta5da2m2u",
+      "type": "text",
+      "x": 660,
+      "y": 360,
+      "strokeColor": "#6741d9",
+      "text": "alert_events",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:37.933Z",
+      "updatedAt": "2026-03-20T18:02:37.933Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwvkiw6gs4kxg",
+      "type": "arrow",
+      "x": 987.3404450024794,
+      "y": 446.5141928344077,
+      "width": 110,
+      "height": 130,
+      "strokeColor": "#1e1e1e",
+      "strokeWidth": 2,
+      "roughness": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          116.08834076427195,
+          50.3049476645179
+        ]
+      ],
+      "start": {
+        "id": "alert"
+      },
+      "end": {
+        "id": "fcm"
+      },
+      "endArrowhead": "arrow",
+      "createdAt": "2026-03-20T18:02:37.933Z",
+      "updatedAt": "2026-03-20T18:02:37.933Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwxrnkjkocsu8",
+      "type": "text",
+      "x": 1010,
+      "y": 480,
+      "strokeColor": "#868e96",
+      "text": "FCM Push",
+      "fontSize": 14,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:37.933Z",
+      "updatedAt": "2026-03-20T18:02:37.933Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwn13k22mykbl",
+      "type": "arrow",
+      "x": 1092.281889430098,
+      "y": 277.89506075366313,
+      "width": -120,
+      "height": 0,
+      "strokeColor": "#868e96",
+      "strokeWidth": 1,
+      "strokeStyle": "dotted",
+      "roughness": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -104.56377886019618,
+          -28.51739423459898
+        ]
+      ],
+      "start": {
+        "id": "mon"
+      },
+      "end": {
+        "id": "ocr"
+      },
+      "endArrowhead": "arrow",
+      "createdAt": "2026-03-20T18:02:37.933Z",
+      "updatedAt": "2026-03-20T18:02:37.933Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwm45cwxmjkjq",
+      "type": "arrow",
+      "x": 1092.281889430098,
+      "y": 342.10493924633687,
+      "width": -120,
+      "height": 50,
+      "strokeColor": "#868e96",
+      "strokeWidth": 1,
+      "strokeStyle": "dotted",
+      "roughness": 1,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -104.56377886019618,
+          28.51739423459901
+        ]
+      ],
+      "start": {
+        "id": "mon"
+      },
+      "end": {
+        "id": "alert"
+      },
+      "endArrowhead": "arrow",
+      "createdAt": "2026-03-20T18:02:37.933Z",
+      "updatedAt": "2026-03-20T18:02:37.933Z",
+      "version": 1
+    },
+    {
+      "id": "mmz7ihuwbmp7wso3am8",
+      "type": "text",
+      "x": 1110,
+      "y": 395,
+      "strokeColor": "#868e96",
+      "text": "Prometheus scrape",
+      "fontSize": 12,
+      "fontFamily": 5,
+      "createdAt": "2026-03-20T18:02:37.933Z",
+      "updatedAt": "2026-03-20T18:02:37.933Z",
+      "version": 1
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  }
+}

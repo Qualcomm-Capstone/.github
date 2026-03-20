@@ -1,15 +1,29 @@
-# <icon> Overspeed vehicle detection and alert system - with Qualcomm
+# SpeedCam — 실시간 과속탐지 및 알림 시스템 with Qualcomm
 
 <div align=center>
 <img src="https://github.com/user-attachments/assets/cadc57b1-1806-4580-954d-ef898bd68f5f"/>
 
 <h4>https://auto-notify.vercel.app/</h4>
-<h2>실시간 과속탐지 및 알림 시스템</h2>
-<h3>Rubik Pi 보드에서 YOLO 기반 객체 감지와 속도 측정을 통해 과속 차량을 탐지하고,<br>
-서버로 정보를 전송해 실시간 알림까지 제공하는 스마트 교통 시스템</h3>
+<h2>SpeedCam — 실시간 과속탐지 및 알림 시스템</h2>
+<h3>3-Service Event-Driven Architecture 기반 스마트 교통 시스템.<br>
+Rubik Pi 엣지 디바이스에서 MQTT로 과속 감지 데이터를 전송하면,<br>
+OCR 번호판 인식 → FCM 푸시 알림까지 자동 처리.<br>
+Database per Service 패턴(4개 독립 DB) 적용.</h3>
 </div>
 <br />
 
+## 📑 Contents
+- [Demo](#demo)
+- [System Architecture](#system-architecture)
+- [Tech Stack](#tech-stack)
+- [Notification System Design](#notification-system-design)
+- [Rubik Pi 3](#rubik-pi-3)
+- [API](#api)
+- [Monitoring](#monitoring)
+- [CI/CD](#ci-cd)
+- [Member](#member)
+
+<a id="demo"></a>
 <h2>🖥️ Demo</h2>
 <h3>시연 영상</h3>
 https://www.youtube.com/watch?v=FDzbjOeika8
@@ -21,61 +35,22 @@ https://www.youtube.com/watch?v=FDzbjOeika8
 <h3>알림 확인하기</h3>
 <img src="https://github.com/user-attachments/assets/c8415375-8a53-45be-b3bb-a0e9a2b20437" width="70%">
 
-
-
-<br />
 <br />
 <br />
 
-
+<a id="system-architecture"></a>
 <h2>🏛️ System Architechture</h2>
 <img width="1616" height="646" alt="image" src="https://github.com/user-attachments/assets/1215a1dc-a232-4837-b8c2-53ae3c9f7150" />
 
 [자세히 보기](https://www.notion.so/2f33187fa1c980e1895cfef39b2c8ec7?pvs=21)
 
-### 기존 시스템 아키텍처의 문제점
+<blockquote>
+3개 서비스(Main/OCR Worker/Alert Worker)로 구성된 Event-Driven Architecture. Rubik Pi가 MQTT로 과속 감지 데이터를 전송하면, Main Service가 수신 → OCR Worker가 번호판 인식 → Alert Worker가 FCM 푸시 알림을 전송한다. Database per Service 패턴(4개 독립 DB), Choreography 패턴, Dead Letter Queue를 적용.
+<br /><br />
+<a href="../docs/ARCHITECTURE-EVOLUTION.md">Architecture Evolution 상세 보기 →</a>
+</blockquote>
 
-기존 아키텍처는 다음과 위와 같은 구조(Before)를 가지고 있었습니다
-
-이 구조에서 다음과 같은 **4가지 핵심 문제**가 발생했습니다.
-
-- OCR 동기 처리로 인한 서버 처리량 저하
-- 느린 응답으로 인한 Edge Device 블로킹
-- HTTP 기반 IoT 통신의 구조적 한계
-- OCR 장애가 전체 서비스에 전파
-
-### 새로운 아키텍처의 설계
-
-위 문제들을 해결하기 위해 **Event Driven Architecture**로 전환했습니다.
-
-- 비동기 이벤트 처리로 서버 처리량 극대화
-- 즉시 응답으로 Edge Device 해방
-- MQTT 프로토콜로 IoT 최적화
-- 완전한 장애 격리와 독립적 확장
-
-### 정리
-
-**Before vs After 비교**
-
-| 문제 영역 | Before | After |
-| --- | --- | --- |
-| **OCR 처리** | Django 동기 (블로킹) | OCR-Worker 비동기 |
-| **응답 시간** | 3초+ | < 100ms |
-| **IoT 프로토콜** | HTTP (오버헤드) | MQTT (경량, QoS) |
-| **메시지 보장** | 없음 | At least once |
-| **장애 격리** | 전체 영향 | 컴포넌트 격리 |
-| **확장성** | 서버 전체 확장 | Worker별 독립 확장 |
-| **데이터베이스** | 단일 DB | 서비스별 4개 DB |
-
-**기존 아키텍처의 근본적 한계**였던 **OCR 동기 처리**를 제거하고, **Event Driven Architecture**로 전환함으로써
-
-1. **서버 처리량 극대화**: API 서버는 이벤트 발행만 담당, OCR은 별도 Worker가 병렬 처리
-2. **Edge Device 효율화**: 즉시 응답으로 연속 감지 가능, 데이터 유실 방지
-3. **IoT 최적화**: MQTT 프로토콜로 경량화, 메시지 전달 보장, 오프라인 대응
-4. **운영 안정성**: 장애 격리, 독립적 확장, 이벤트 보존으로 시스템 복원력 확보
-<br />
-<br />
-
+<a id="tech-stack"></a>
 <h2>🛠️ Tech Stack</h2>
 <div align=center>
 <h4>Frontend</h4>
@@ -89,10 +64,12 @@ https://www.youtube.com/watch?v=FDzbjOeika8
 <br />
 <h4>Backend</h4>
 <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white">
+<img src="https://img.shields.io/badge/DRF-A30000?style=for-the-badge&logo=django&logoColor=white">
 <img src="https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=gunicorn&logoColor=white">
+<img src="https://img.shields.io/badge/Celery-37814A?style=for-the-badge&logo=celery&logoColor=white">
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 <img src="https://img.shields.io/badge/RabbitMQ-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white">
-<img src="https://img.shields.io/badge/Celery-37814A?style=for-the-badge&logo=celery&logoColor=white">
+<img src="https://img.shields.io/badge/EasyOCR-4285F4?style=for-the-badge&logo=python&logoColor=white">
 
 
 <br />
@@ -105,6 +82,14 @@ https://www.youtube.com/watch?v=FDzbjOeika8
 <img src="https://img.shields.io/badge/Traefik-24A1C1?style=for-the-badge&logo=traefikproxy&logoColor=white">
 <img src="https://img.shields.io/badge/Portainer-13BEF9?style=for-the-badge&logo=portainer&logoColor=white">
 
+<br />
+<br />
+<h4>Monitoring</h4>
+<img src="https://img.shields.io/badge/OpenTelemetry-000000?style=for-the-badge&logo=opentelemetry&logoColor=white">
+<img src="https://img.shields.io/badge/Jaeger-66CFE3?style=for-the-badge&logo=jaeger&logoColor=white">
+<img src="https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white">
+<img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white">
+<img src="https://img.shields.io/badge/Loki-F46800?style=for-the-badge&logo=grafana&logoColor=white">
 
 <br />
 <br />
@@ -122,70 +107,27 @@ https://www.youtube.com/watch?v=FDzbjOeika8
 
 <br />
 
+<a id="notification-system-design"></a>
 <h2>Notification System Design</h2>
 
-<h4>Django - RabbitMQ - Celery - FCM(3rd party Service) feat. Ack & Nack</h4>
-<img src="https://github.com/user-attachments/assets/671d75ad-a1ab-441e-8159-f55080f38cb4">
-<h4>Dead Letter Queue & Dead Letter Consumer</h4>
-<img src="https://github.com/user-attachments/assets/75dc90c3-89d8-435b-a36e-5addbeaaf3ce">
+Choreography 패턴 기반 알림 시스템. OCR 완료 시 domain_events exchange에 이벤트를 발행하면, Kombu Consumer가 수신하여 Celery gevent Worker가 FCM 푸시를 전송한다. Dead Letter Queue와 Ack/Nack 메커니즘으로 메시지 유실을 방지.
 
+> [Notification System Design 상세 보기 →](../docs/NOTIFICATION-SYSTEM-DESIGN.md)
 
-
-<h4>reference</h4>  
-
-- System Deisgn interview (Alex Xu)
-- <a href="https://youtu.be/uk5fRLUsBfk?si=n6--PVE2CH4pQt_4">분산 시스템에서 데이터를 전달하는 효율적인 방법 - nhn 김병부</a>
-
+<a id="rubik-pi-3"></a>
 <h2>Rubik Pi 3</h2>
-Qualcomm 기반 Rubik Pi 하드웨어에서 YOLO 객체 탐지와 GStreamer를 활용해,
-실시간으로 과속 차량을 감지하는 완전한 엣지 기반 시스템.
-카메라 입력부터 추론, 트래킹, 속도 측정, 과속 차량 촬영까지 모든 과정을 로컬에서 처리하므로 클라우드 연산 불필요.
 
-## Rubik Tech Stack
+Qualcomm 기반 Rubik Pi에서 YOLO 객체 탐지와 GStreamer를 활용한 실시간 과속 차량 감지 엣지 시스템. 카메라 입력부터 추론, 트래킹, 속도 측정까지 모든 과정을 로컬에서 처리.
 
-| Category             | Technologies                                                    |
-|----------------------|-----------------------------------------------------------------|
-| **Hardware**         | Rubik Pi 3, IMX477 image sensor, 10MP HQ Lens(16mm)             |
-| **Object Detection** | YOLOv5m                                                         |
-| **Acceleration**     | Qualcomm SNPE + TFLite delegate                                 |
-| **Pipeline**         | GStreamer                                                       |
-| **Programming**      | Python                                                          |
-| **Features**         | On-device tracking, speed measurement, snapshot, multithreading |
-
-## Object Tracking (IoU)
-
-<img src="https://github.com/user-attachments/assets/868437d2-78e2-4d52-89a7-3d7f9e850517" width="300" height="200">
-
-IoU를 계산하여, 다음프레임의 객체가 같은 객체인지 판단
-
-## Speed Measurement
-
-### Method 1 (Not Used)
-
-<img src="https://github.com/user-attachments/assets/9980f43f-7990-47aa-a222-8e350e34666c" width="300" height="200">
-
-프레임간 중심 좌표의 이동거리 변화로 속도를 측정
-
-### Method 2 (✅Selected)
-
-<img src="https://github.com/user-attachments/assets/e6d91e45-a950-47ad-8ef3-96aa008875cb" width="300" height="200">
-
-가상의 두 선을 그어놓고, 두 선을 동과하는데 걸리는 시간을 측정
-
-하지만, 이 방법은 가상의 두 선 사이의 실제 도로 거리를 알아야 정확히 측정 가능
-
-## Multi Threading
-
-병목 현상을 최소화 하기 위해서 멀티 스레딩을 사용
-
-+ 메인 스레드
-+ 트래킹, 속도 측정 스레드
-+ 사진촬영 및 전송 스레드
+> [Rubik Pi Edge System 상세 보기 →](../docs/RUBIK-PI-EDGE-SYSTEM.md)
 
 <br />
-<br />
 
+<a id="api"></a>
 <h2>📁 API</h2>
+
+Django REST Framework 기반 API. Vehicle CRUD, Detection 조회/통계, Notification 이력 등 15+ 엔드포인트 제공. Swagger/ReDoc 자동 문서화.
+
 <h3>Swagger</h3>
 <img src="https://github.com/user-attachments/assets/32f4389e-ef31-4ce1-b385-b369759a1f14">
 <h3>Postman</h3>
@@ -193,107 +135,39 @@ IoU를 계산하여, 다음프레임의 객체가 같은 객체인지 판단
 
 <br />
 
+<a id="monitoring"></a>
 <h2>🔍 Monitoring</h2>
-<h3>Portainer</h3>
-<img src="https://github.com/user-attachments/assets/c587e391-3b48-410a-b6aa-8c118952cfcd">
 
+OpenTelemetry + Jaeger 분산 트레이싱, Prometheus + Grafana 메트릭 대시보드, Loki + Promtail 로그 수집, Flower Celery 모니터링, RabbitMQ Management 큐 대시보드로 구성된 풀스택 관측성.
 
-<h3>RabbitMQ</h3>
-<img src="https://github.com/user-attachments/assets/a40a7cbb-0922-4fc4-9de5-710ec1b71a76">
+<h3>Grafana Dashboard</h3>
 
-<h3>Flower(celery monitoring</h3>
-<img src="https://github.com/user-attachments/assets/c0f44488-142a-4f3d-bbab-c64479ee3e75">
+<!-- TODO: 새 스크린샷으로 교체 — Grafana 시스템 메트릭 대시보드 -->
+<img src="" alt="Grafana Dashboard" width="70%">
 
-<br />
-<h2>📓 How to Start</h2>
+<h3>Jaeger Tracing</h3>
 
-### Clone Repository
+<!-- TODO: 새 스크린샷으로 교체 — Jaeger E2E 트레이싱 (MQTT → OCR → FCM) -->
+<img src="" alt="Jaeger Tracing" width="70%">
 
-docker repository를 클론합니다.
+<h3>RabbitMQ Management</h3>
 
+<!-- TODO: 새 스크린샷으로 교체 — RabbitMQ Queue 상태 (ocr_queue, fcm_queue, alert_domain_events) -->
+<img src="" alt="RabbitMQ Management" width="70%">
 
+<h3>Loki + Promtail Logs</h3>
 
-<details>
-  <summary>Frontend</summary>
-
-### Install Packages
-
-패키지 설치를 합니다.
-
-  ```
-  npm install
-  ```
-
-### Add Environment Files
-
-환경 파일을 생성해 줍니다.
-
-#### .env
-
-  ```
-  VITE_API_BASE_URL=http://localhost:8000/api
-  VITE_FIREBASE_API_KEY=YOUR_FIREBASE_API_KEY
-  VITE_FIREBASE_AUTH_DOMAIN=YOUR_FIREBASE_AUTH_DOMAIN
-  VITE_FIREBASE_PROJECT_ID=YOUR_FIREBASE_PROJECT_ID
-  VITE_FIREBASE_STORAGE_BUCKET=YOUR_FIREBASE_STORAGE_BUCKET
-  VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_SENDER_ID
-  VITE_FIREBASE_APP_ID=YOUR_FIREBASE_APP_ID
-  VITE_FIREBASE_VAPID_KEY=YOUR_FIREBASE_VAPID_KEY
-  ```
-
-### Getting Started
-
-마지막으로 개발 서버를 열어줍니다.
-
-  ```
-  npm run dev
-  ```
-
-### See Result
-
-http://localhost:5173 에 접속하여 결과물을 조회합니다.
-
-</details>
-
-
-<details>
-  <summary>Backend</summary>
-
-### Add Environment Files(.env)
-
-**/.env**
-
-  ```
-  DATABASE_NAME= capstone
-  DATABASE_USER= sa
-  DATABASE_PASS= 1234
-  DATABASE_HOST=
-  DATABASE_PORT=
-  SECRET_KEY=
-
-
-  ```
-
-  ```
-  
-  
-
-  ```
-
-### Docker Run Command
-
-백엔드 서비스를 시작하기 위해 다음 Docker Compose 명령어를 실행합니다.
-
-  ```bash
-  docker-compose -p teaml -f Solomon-Docker/docker-compose.prod.yml up -d -—build
-  ```
-
-</details>
-<br /> 
-<!-- <h2>📂 Directory Structure</h2>
+<!-- TODO: 새 스크린샷으로 교체 — Grafana Loki 로그 조회 -->
+<img src="" alt="Loki Logs" width="70%">
 
 <br />
-<br /> -->
+
+<a id="ci-cd"></a>
+<h2>⚙️ CI/CD</h2>
+
+GitHub Actions 기반 CI 파이프라인. Lint(flake8/black/isort), Test(pytest + MySQL), Docker Build(3개 이미지) 자동 검증. main 브랜치 push 시 GCP Artifact Registry에 이미지 배포.
+
+<a id="member"></a>
 <h2>Member</h2>
 
 <table width="1000">
