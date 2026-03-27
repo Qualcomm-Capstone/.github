@@ -130,8 +130,6 @@ Django REST Framework 기반 API. Vehicle CRUD, Detection 조회/통계, Notific
 
 <h3>Swagger</h3>
 <img src="https://github.com/user-attachments/assets/32f4389e-ef31-4ce1-b385-b369759a1f14">
-<h3>Postman</h3>
-<img src="https://github.com/user-attachments/assets/d319a2ae-ee50-462e-8224-131d4656af48">
 
 <br />
 
