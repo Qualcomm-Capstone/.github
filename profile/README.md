@@ -1,4 +1,4 @@
-# SpeedCam — 실시간 과속탐지 및 알림 시스템 with Qualcomm
+# AutoNotify — 실시간 과속탐지 및 알림 시스템 with Qualcomm
 
 <div align=center>
 <img src="https://github.com/user-attachments/assets/cadc57b1-1806-4580-954d-ef898bd68f5f"/>
